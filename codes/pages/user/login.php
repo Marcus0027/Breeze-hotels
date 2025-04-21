@@ -54,9 +54,10 @@ $emailSalvo = $_COOKIE["email_lembrado"] ?? "";
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
     <link href="login.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/breeze/images/logo.ico">
+    <title> Login </title>
 </head>
 <body class="d-flex align-items-center py-4">
 <main class="w-100 m-auto form-container" style="max-width: 300px; padding: 1rem;">
