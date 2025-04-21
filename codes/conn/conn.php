@@ -1,14 +1,15 @@
 <?php
     $serv = "localhost";
     $user = "root";
-    $senha = "";
-    $banco = "breeze";
+    $pass = "";
+    $bd = "breeze";
 
-    $conn = new mysqli($serv,$user,$senha,$banco);
+    $conn = new mysqli($serv,$user,$pass,$bd);
 
-    if ($conn->connect_error) {
-        die("Erro na conexão: " . $conn->connect_error);
+    try {
+        $conn = new PDO("mysql:host=$serv;dbname=$bd;charset=utf8", $user, $pass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        die("Erro de conexão: " . $e->getMessage());
     }
-    
-
 ?>
