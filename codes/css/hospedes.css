@@ -1,15 +1,22 @@
-header{
-    background-color: #0b7ff4;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 10%;
-}
-
 main{
     max-width: 1000px;
     padding: 1rem;
 }
 
 .fade{
+    display: none;
+}
+
+.color{
+    color: white;
+    border-radius: 10px;
+}
+
+.color:hover{
+    color: white;
+    background-color:rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-toggle::after {
     display: none;
 }
