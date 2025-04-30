@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/04/2025 às 22:03
+-- Tempo de geração: 30/04/2025 às 05:01
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idcliente`, `cpf`, `telefone`, `q_idquarto`, `qh_idhotel`, `qtq_idtipo`, `u_idusuarios`) VALUES
-(1, '353.835.932-83', '(85) 97279-1345', 1, 7, 9, 2),
+(1, '353.835.932-83', '(85) 97279-1348', 1, 7, 9, 2),
 (3, '923.212.532-53', '(85) 95742-8812', 7, 2, 3, 3);
 
 -- --------------------------------------------------------
@@ -84,7 +84,11 @@ INSERT INTO `hoteis` (`idhotel`, `nome`, `regiao`, `estado`, `cidade`, `endereç
 (17, 'Sopro do Vento', 'Nordeste', 'PB', 'João Pessoa', 'Av. Cabo Branco, 1982'),
 (18, 'Jardim Zéfiro', 'Norte', 'AM', 'Manaus', 'Av. Constantino Nery, 1092'),
 (19, 'Villa Branca Flor', 'Sul', 'RS', 'Gramado', 'Av. Central, 330'),
-(20, 'Casa Índigo Rosa', 'Sudeste', 'SP', 'Campinas', 'R. Ferreira Penteado, 711');
+(20, 'Casa Índigo Rosa', 'Sudeste', 'SP', 'Campinas', 'R. Ferreira Penteado, 711'),
+(21, 'Praia Dourada', 'Nordeste', 'BA', 'Salvador', 'Blv. Oceânica, 1234'),
+(22, 'Recanto Rural', 'Centro-Oeste', 'GO', 'Caldas Novas', 'R. das Termas, 789'),
+(23, 'Suíço Brasileiro', 'Sul', 'RS', 'Gramado', 'Rod. RS-115, Km 35'),
+(24, 'Palácio das Águas', 'Centro-Oeste', 'GO', 'Caldas Novas', 'Av. Fonte Termal, 1500');
 
 -- --------------------------------------------------------
 
@@ -119,7 +123,8 @@ INSERT INTO `ocupacao` (`idocupacao`, `ocupacao`) VALUES
 (3, 'Twin'),
 (4, 'Triplo'),
 (5, 'Quádruplo'),
-(6, 'Familiar');
+(6, 'Familiar'),
+(10, 'Triple Twin');
 
 -- --------------------------------------------------------
 
@@ -143,17 +148,18 @@ CREATE TABLE `quartos` (
 --
 
 INSERT INTO `quartos` (`idquarto`, `numero`, `valor`, `descricao`, `disponibilidade`, `h_idhotel`, `tq_idtipo`, `o_idocupacao`) VALUES
-(1, 202, 500, 'Otimo quarto, vista para a praia', 1, 7, 9, 6),
+(1, 202, 500, 'Otimo quarto, vista para a praia', 0, 7, 9, 6),
 (2, 777, 121, 'Quarto standard equipado com cama confortável, Wi-Fi, banheiro privativo e mesa de trabalho. Ideal para ocupação quádruplo.', 1, 1, 1, 5),
 (3, 490, 606, 'Cabana rústica com varanda, rede e clima acolhedor, ideal para casais. Ideal para ocupação casal.', 1, 1, 10, 2),
 (4, 688, 176, 'Quarto econômico com estrutura simples, ideal para estadias curtas ou viajantes econômicos. Ideal para ocupação individual.', 1, 1, 2, 1),
 (5, 345, 348, 'Quarto superior com vista parcial, ar-condicionado, frigobar e decoração moderna. Ideal para ocupação triplo.', 1, 1, 3, 4),
 (6, 349, 825, 'Cabana rústica com varanda, rede e clima acolhedor, ideal para casais. Ideal para ocupação twin.', 1, 1, 10, 3),
-(7, 107, 311, 'Quarto superior com vista parcial, ar-condicionado, frigobar e decoração moderna. Ideal para ocupação individual.', 1, 2, 3, 1),
+(7, 107, 311, 'Quarto superior com vista parcial, ar-condicionado, frigobar e decoração moderna. Ideal para ocupação individual.', 0, 2, 3, 1),
 (8, 233, 1432, 'Luxuosa suíte presidencial com 3 ambientes, jacuzzi, serviço exclusivo e decoração refinada. Ideal para ocupação casal.', 1, 2, 8, 2),
 (9, 795, 139, 'Quarto econômico com estrutura simples, ideal para estadias curtas ou viajantes econômicos. Ideal para ocupação casal.', 1, 2, 2, 2),
 (10, 711, 392, 'Acomodação espaçosa com vista, cama queen, amenities premium e TV de tela plana. Ideal para ocupação triplo.', 1, 2, 4, 4),
-(11, 385, 634, 'Chalé de madeira com lareira, vista para a natureza e total privacidade. Ideal para ocupação twin.', 1, 2, 9, 3);
+(11, 385, 634, 'Chalé de madeira com lareira, vista para a natureza e total privacidade. Ideal para ocupação twin.', 1, 2, 9, 3),
+(12, 501, 500, 'Suíte Presidencial com varanda privativa, piso aquecido, sistema de som integrado, cortinas blackout automatizadas e amenities de luxo da marca Bulgari. Experiência cinco estrelas!', 1, 5, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -206,7 +212,8 @@ INSERT INTO `tipo_quarto` (`idtipo_quarto`, `tipoQuarto`) VALUES
 (8, 'Suíte Presidencial'),
 (9, 'Chalé'),
 (10, 'Cabana'),
-(11, 'Bangalô');
+(11, 'Bangalô'),
+(12, 'Loft');
 
 -- --------------------------------------------------------
 
@@ -227,7 +234,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuarios`, `nome`, `email`, `senha`) VALUES
 (2, 'Samuel', 'samuel@gmail.com', '$2y$10$RutKmw5hXXaaI0EWOS95GOlnsdy7QMxN/0Kf32huCnI91LKgKMTEe'),
-(3, 'Teste', 'teste@gmail.com', '$2y$10$5fL//GbSUYacb6jt5GvHVuKigUhqXdcJZssP6ZDGj6jw4iXiJchrC');
+(3, 'Teste', 'teste@gmail.com', '$2y$10$5fL//GbSUYacb6jt5GvHVuKigUhqXdcJZssP6ZDGj6jw4iXiJchrC'),
+(4, 'Marcus', 'marcus@gmail.com', '$2y$10$cYfyS0yCegtoGk7ZBWNBR.YJVUcyDUOt6Ev1eUhR39OtsUGR5taRS');
 
 --
 -- Índices para tabelas despejadas
@@ -303,7 +311,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `hoteis`
 --
 ALTER TABLE `hoteis`
-  MODIFY `idhotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idhotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `imagens`
@@ -315,13 +323,13 @@ ALTER TABLE `imagens`
 -- AUTO_INCREMENT de tabela `ocupacao`
 --
 ALTER TABLE `ocupacao`
-  MODIFY `idocupacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idocupacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `quartos`
 --
 ALTER TABLE `quartos`
-  MODIFY `idquarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idquarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
@@ -333,13 +341,13 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de tabela `tipo_quarto`
 --
 ALTER TABLE `tipo_quarto`
-  MODIFY `idtipo_quarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idtipo_quarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
