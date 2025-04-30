@@ -1,5 +1,6 @@
 <?php
-include 'conn.php';
+
+include __DIR__ . "/../../conn/conn.php";
 
 header("Cache-Control: no-store");
 
