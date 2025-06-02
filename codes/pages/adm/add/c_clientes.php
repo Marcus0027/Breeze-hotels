@@ -71,10 +71,6 @@ try {
     <link rel="icon" href="/breeze/images/logo.ico">
     <title> Criar Clientes </title>
     <style>
-        a:hover {
-            cursor: pointer;
-        }
-
         body {
             max-height: 1vh;
             overflow: hidden;
